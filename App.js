@@ -18,14 +18,14 @@ export default class App extends Component<Props> {
         <MapView
           style={styles.map}
           region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: 35.645736,
+            longitude: 139.747575,
+            latitudeDelta: 0.03,
+            longitudeDelta: 0.03,
           }}
         >
-      </MapView>
-    </View>
+        </MapView>
+      </View>
     );
   }
 }
