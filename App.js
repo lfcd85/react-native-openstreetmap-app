@@ -10,10 +10,12 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  ios:
+    'iOS と Android で表示の出し分けができそうです。\n' +
+    'Cmd+R キーでリロードしたり、 Cmd+D キーでメニューを出したりできるとのこと。',
   android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+    'ここは Android 用なので、編集しても iOS では表示されなさそう。,\n' +
+    'せっかくなのでスタイルシートもちょっと変えてみます。',
 });
 
 type Props = {};
@@ -21,8 +23,8 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.welcome}>ここに地図を出したい</Text>
+        <Text style={styles.instructions}>OpenStreetMapを使ってみたい</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
@@ -34,16 +36,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#ffffff',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#333333',
     textAlign: 'center',
-    margin: 10,
+    marginBottom: 40,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'left',
+    color: '#666666',
+    marginHorizontal: 30,
+    marginBottom: 30,
   },
 });
