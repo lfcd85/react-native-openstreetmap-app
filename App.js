@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import MapView, { UrlTile } from 'react-native-maps';
+import MapView, { UrlTile, Marker } from 'react-native-maps';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -22,6 +22,17 @@ export default class App extends Component<Props> {
         longitudeDelta: 0.03,
       },
       urlTemplate: 'http://c.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      markers: [
+        {
+          key: 'tamachiStation',
+          latlng: {
+            latitude: 35.645736,
+            longitude: 139.747575,
+          },
+          title: '田町駅',
+          description: '田町ニューデイズ',
+        },
+      ],
     };
   }
 
@@ -41,6 +52,14 @@ export default class App extends Component<Props> {
             urlTemplate={this.state.urlTemplate}
             maximumZ={19}
           />
+          {this.state.markers.map(marker => (
+            <Marker
+              key={marker.key}
+              coordinate={marker.latlng}
+              title={marker.title}
+              description={marker.description}
+            />
+          ))}
         </MapView>
       </View>
     );
