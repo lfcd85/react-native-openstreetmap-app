@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { UrlTile } from 'react-native-maps';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -21,6 +21,7 @@ export default class App extends Component<Props> {
         latitudeDelta: 0.03,
         longitudeDelta: 0.03,
       },
+      urlTemplate: 'http://c.tile.openstreetmap.org/{z}/{x}/{y}.png',
     };
   }
 
@@ -35,7 +36,12 @@ export default class App extends Component<Props> {
           style={styles.map}
           region={this.state.region}
           onRegionChange={this.onRegionChange.bind(this)}
-        />
+        >
+          <UrlTile
+            urlTemplate={this.state.urlTemplate}
+            maximumZ={19}
+          />
+        </MapView>
       </View>
     );
   }
