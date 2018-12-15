@@ -24,14 +24,18 @@ export default class App extends Component<Props> {
     };
   }
 
+  onRegionChange(region) {
+    this.setState({ region });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <MapView
           style={styles.map}
           region={this.state.region}
-        >
-        </MapView>
+          onRegionChange={this.onRegionChange.bind(this)}
+        />
       </View>
     );
   }
