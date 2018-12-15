@@ -14,6 +14,7 @@ type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
+
     this.state = {
       region: {
         latitude: 35.645736,
@@ -34,10 +35,44 @@ export default class App extends Component<Props> {
         },
       ],
     };
+
+    this.requestGetCurrentPosition();
   }
 
   onRegionChange(region) {
     this.setState({ region });
+  }
+
+  requestGetCurrentPosition = () => {
+    if (!navigator.geolocation) return false
+
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      this.successToGetCurrentPosition,
+      this.failToGetCurrentPosition,
+      options
+    );
+  }
+
+  successToGetCurrentPosition = (position) => {
+    const { latitude, longitude } = position.coords;
+
+    this.setState(prevState => ({
+      region: {
+        ...prevState.region,
+        latitude,
+        longitude,
+      }
+    }));
+  }
+
+  failToGetCurrentPosition = (error) => {
+    console.warn(`ERROR(${error.code}): ${error.message}`);
   }
 
   render() {
